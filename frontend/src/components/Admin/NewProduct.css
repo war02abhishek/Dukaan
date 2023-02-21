@@ -135,3 +135,10 @@
     padding: 1.8vmax;
   }
 }
+#createProductFormFile{
+  display: flex;
+  flex-direction: column;
+}
+#createProductFormFile input{
+  padding: 0.85rem;
+}

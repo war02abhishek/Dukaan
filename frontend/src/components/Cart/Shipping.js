@@ -1,10 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
-import './Shipping.css'
-import { useDispatch,useSelector } from 'react-redux'
-import { useAlert } from 'react-alert'
-import { useNavigate } from 'react-router-dom'
-import { saveShippingInfo } from '../../actions/cartAction'
+import React from "react";
+import { useState } from "react";
+import "./Shipping.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
+import { useNavigate } from "react-router-dom";
+import { saveShippingInfo } from "../../actions/cartAction";
 import MetaData from "../Layout/MetaData";
 import CheckoutSteps from "./CheckoutSteps";
 
@@ -17,37 +17,26 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 import PublicIcon from "@mui/icons-material/Public";
 import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStation";
 
-
-
-
-
-
-
-
-
-
-
-
-
 const Shipping = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const alert = useAlert();
 
-    const dispatch=useDispatch();
-    const navigate = useNavigate();
+  const { shippingInfo } = useSelector((state) => state.cart);
 
-     const { shippingInfo } = useSelector((state) => state.cart);
-
-     const [address, setAddress] = useState(shippingInfo.address);
-     const [city, setCity] = useState(shippingInfo.city);
-     const [state, setState] = useState(shippingInfo.state);
-     const [country, setCountry] = useState(shippingInfo.country);
-     const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
-     const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
+  const [address, setAddress] = useState(shippingInfo.address);
+  const [city, setCity] = useState(shippingInfo.city);
+  const [state, setState] = useState(shippingInfo.state);
+  const [country, setCountry] = useState(shippingInfo.country);
+  const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
+  const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
 
   const shippingSubmit = (e) => {
     e.preventDefault();
 
     if (phoneNo.length < 10 || phoneNo.length > 10) {
-      alert.error("Phone Number should be 10 digits Long");
+      alert.error(`Phone Number should be 10 digits Long`);
+      
       return;
     }
     dispatch(
@@ -55,10 +44,6 @@ const Shipping = () => {
     );
     navigate("/order/confirm");
   };
-
-
-
-
 
   return (
     <>
@@ -169,6 +154,6 @@ const Shipping = () => {
       </div>
     </>
   );
-}
+};
 
-export default Shipping
+export default Shipping;

@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Layout/Header/Header.js";
 import "./App.css";
 import webfont from "webfontloader";
@@ -51,20 +51,28 @@ import ProductList from "./components/Admin/ProductList.js";
 import NewProduct from "./components/Admin/NewProduct.js";
 import UpdateProduct from "./components/Admin/UpdateProduct.js";
 import UpdateUser from "./components/Admin/UpdateUser.js";
+import UpdatePassword from "./components/User/UpdatePassword.js";
 import UpdateOrder from "./components/Admin/UpdateOrderP.js";
+import LocationMap from "./components/LocationMap/LocationMap.js";
+import LocationM from "./components/LocationMap/LocationMap2.js";
+import LocationMap3 from "./components/LocationMap/LocationMap3.js";
+import LocationMap4 from "./components/LocationMap/LocationMap4.js";
+import Payment2 from "./components/Cart/Payment2.js";
+import ForgotPassword from "./components/User/ForgotPassword.js";
+import ForgotPassword2 from "./components/User/ForgotPassword2.js";
+import ResetPasswordForm from "./components/User/ResetPasswordForm.js";
+import Footer2 from "./components/Layout/Footer2/Footer2.js";
 
 function App() {
   console.log("App.js");
- const dispatch = useDispatch();
- const [stripeApiKey,setStripeApiKey]=useState("");
+  const dispatch = useDispatch();
+  const [stripeApiKey, setStripeApiKey] = useState("");
 
- async function getStripeApiKey()
- {
-     const {data} = await axios.get("/api/v1/stripeapikey");
-     console.log(data);
-     setStripeApiKey(data.stripeApiKey);
- }
-
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+    console.log(data);
+    setStripeApiKey(data.stripeApiKey);
+  }
 
   // const user = JSON.parse(localStorage.getItem("user"));
   // console.log("user", user);
@@ -78,13 +86,12 @@ function App() {
     });
     store.dispatch(loadUser());
     getStripeApiKey();
-    var userl=JSON.parse(localStorage.getItem("user"));
-      console.log(userl);
+    // var userl=JSON.parse(localStorage.getItem("user"));
+    //   console.log(userl);
     // if(userl !==null)
     // {
     //     dispatch({ type:LOAD_USER_SUCCESS, payload: userl});
     // }
-     
   }, []);
 
   return (
@@ -122,9 +129,11 @@ function App() {
             <Route
               element={<ElementsLayout stripe={loadStripe(stripeApiKey)} />}
             >
-              <Route path="/process/payment" element={<Payment />} />
+              <Route path="/process/stripe/payment" element={<Payment />} />
             </Route>
           )}
+
+          <Route path="/process/payment" element={<Payment2 />} />
           <Route path="/success" element={<OrderSuccess />} />
           <Route path="/orders" element={<MyOrders />} />
           <Route path="/order/:id" element={<OrderDetails />} />
@@ -137,22 +146,32 @@ function App() {
 
           {/* <ProtectedRoute path="/Profile" element={<Profile />} /> */}
           <Route path="/me/update" element={<UpdateProfile />} />
+          <Route path="/password/update" element={<UpdatePassword />} />
+
           {/* <Route path="/password/update" element={<ChangePass />} />
       <Route path="/login?redirect=shipping" element={<ChangePass />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/admin/users" element={<UsersList/>} />
-          <Route path="/admin/orders" element={<OrderList/>} />
-            <Route path="admin/product" element={<NewProduct/>}/>
-          <Route path="/admin/products" element={<ProductList/>}/>
-            <Route path="/admin/product/:id" element={<UpdateProduct/>}/>
-            <Route path="/admin/user/:id" element={<UpdateUser/>}/>
-            <Route path="/admin/order/:id" element={<UpdateOrder/>}/>
-          
-
-        
+          <Route path="/admin/users" element={<UsersList />} />
+          <Route path="/admin/orders" element={<OrderList />} />
+          <Route path="admin/product" element={<NewProduct />} />
+          <Route path="/admin/products" element={<ProductList />} />
+          <Route path="/admin/product/:id" element={<UpdateProduct />} />
+          <Route path="/admin/user/:id" element={<UpdateUser />} />
+          <Route path="/admin/order/:id" element={<UpdateOrder />} />
+          {/* <Route path="/location" element={<LocationMap/>}/> */}
+          {/* <Route path="/lop" element={<LocationM/>}/> */}
+          <Route path="/lopp" element={<LocationMap3 />} />
+          <Route path="/duk" element={<LocationMap4 />} />
+          {/* <Route path="/forgot/password" element={<ForgotPassword/>}/> */}
+          <Route path="/forgot/password" element={<ForgotPassword2 />} />
+          <Route
+            path="/password/reset/:oobCode"
+            element={<ResetPasswordForm />}
+          />
         </Routes>
 
-        <Footer />
+        {/* <Footer /> */}
+        <Footer2/>
       </Router>
     </GoogleOAuthProvider>
   );

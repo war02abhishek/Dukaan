@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import Razorpay from "razorpay"
 const router = express.Router();
 import Stripe from "stripe"
 const stripe = new Stripe(
@@ -37,3 +38,47 @@ export const sendStripeApiKey =(async (req, res, next) => {
 
  
 });
+
+
+
+export const sendRazoPayApiKey = async (req, res, next) => {
+  try {
+    
+     res.json({
+       razorpayKey: process.env.RAZOPAY_API_KEY,
+     });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const processRazoPayment = async (req, res, next) => {
+  try {
+     const amount = req.body.amount;
+     
+     const options = {
+    amount: amount,
+    currency: 'INR',
+    receipt: 'order_rcptid_11',
+    payment_capture: 1,
+  };
+
+  const instance = new Razorpay({
+    key_id: process.env.RAZOPAY_API_KEY,
+    key_secret:process.env.RAZOPAY_KEY_SECRET,
+  });
+
+  instance.orders.create(options, function (err, order) {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error creating order");
+    }
+    return res.json({
+      order_id: order.id,
+    });
+  });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+

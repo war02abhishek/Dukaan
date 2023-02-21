@@ -36,6 +36,10 @@ const NewProduct = () => {
         public_id: "sample image",
         url: newimage,
       },
+      {
+        public_id: "sample image",
+        url: newimage,
+      },
     ],
   };
   const [name, setName] = useState("");
@@ -212,7 +216,16 @@ const NewProduct = () => {
                   // formdata.image.map(item=>{
 
                   // })
-                  formdata.image[0].url=e.target.value
+                  (formdata.image[0].url = e.target.value)
+                }
+              />
+              <input
+                type="text"
+                name="images"
+                placeholder="Image Link"
+                required
+                onChange={(e) =>
+                  (formdata.image[1].url = e.target.value)
                 }
               />
             </div>

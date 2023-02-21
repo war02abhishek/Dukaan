@@ -72,6 +72,20 @@ const Products = () => {
     filteredProductsCount,
 
   } = useSelector((state) => state.products);
+    const [checkboxes, setCheckboxes] = useState([
+      { id: 1, checked: false },
+      { id: 2, checked: false },
+      { id: 3, checked: false },
+      { id: 4, checked: false },
+      { id: 5, checked: false },
+      { id: 6, checked: false },
+      { id: 7, checked: false },
+      { id: 8, checked: false },
+      { id: 9, checked: false },
+      { id: 10, checked: false },
+      { id: 11, checked: false },
+      { id: 12, checked: false },
+    ]);
 
   // const keyword = re;
   // console.log(keyword);
@@ -90,6 +104,16 @@ const Products = () => {
   };
   const handleChange = (category) => {
     setCategory(category);
+  };
+  const handleCheckboxClick = (id) => {
+    setCheckboxes(
+      checkboxes.map((checkbox) => {
+        if (checkbox.id === id) {
+          return { ...checkbox, checked: !checkbox.checked };
+        }
+        return checkbox;
+      })
+    );
   };
 
   useEffect(() => {
@@ -116,20 +140,21 @@ const Products = () => {
   console.log(count);
   console.log(resultPerPage);
 
-  const {
-    Laptop,
-    Mobile,
-    Tablet,
-    TV,
-    Camera,
-    Speaker,
-    Headphone,
-    Attire,
-    Watch,
-    Other,
-    AC,
-    Refrigerator,
-  } = state;
+  // const {
+  //   Laptop,
+  //   Mobile,
+  //   Tablet,
+  //   TV,
+  //   Camera,
+  //   Speaker,
+  //   Headphone,
+  //   Attire,
+  //   Watch,
+  //   Other,
+  //   AC,
+  //   Refrigerator,
+  // } = state;
+
 
   return (
     <Fragment>
@@ -141,10 +166,13 @@ const Products = () => {
           <h2 className="productsHeading">Products</h2>
 
           <div className="products">
-            {products &&
+            {products.length > 0 ? (
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />
-              ))}
+              ))
+            ) : (
+              <div>No products found</div>
+            )}
           </div>
 
           <div className="filterBox">
@@ -160,7 +188,7 @@ const Products = () => {
             />
             <Typography>Categories</Typography>
             <ul className="categoryBox">
-              {categories.map((category) => (
+              {categories.map((category,id) => (
                 <li
                   className="category-link"
                   key={category}
@@ -168,7 +196,11 @@ const Products = () => {
                     setCategory(category);
                   }}
                 >
-                  <Checkbox onChange={handleChangeC} checked={state.category} />
+                  <Checkbox
+                    sx={{ "& .MuiSvgIcon-root": { padding: 0.1 } }}
+                    checked={checkboxes[id].checked}
+                    onClick={() => handleCheckboxClick(checkboxes[id].id)}
+                  />
 
                   {category}
                 </li>

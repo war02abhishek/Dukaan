@@ -154,8 +154,10 @@ export const createProductReview = async (req, res, next) => {
     console.log(productId);
    const product = await Product.findById(productId);
 console.log(product);
+
+
     const isReviewed = product.reviews.find(
-      (rev) => rev._id.toString() === req.user._id.toString()
+      (rev) => rev.user?.toString() === req.user._id.toString()
        
       //yaha dikkkat
     );
@@ -163,13 +165,15 @@ console.log(product);
     if (isReviewed) {
       //iterate all reviews and find by user id
       product.reviews.forEach((rev) => {
-        console.log(rev.user.toString());
-        if (rev.user.toString() === req.body.user._id.toString()) {
+        console.log(rev.user?.toString());
+
+        if (rev.user?.toString() === req.user._id.toString()) {
           rev.rating = Number(rating);
           rev.comment = comment;
         }
       });
     } else {
+      console.log("NoT MADE BEFORE LETS CREATE NEW REVIEW")
       product.reviews.push(review);
       product.numOfReviews = product.reviews.length;
     }

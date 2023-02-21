@@ -10,10 +10,12 @@
 
 .orderDetailsContainer {
   padding: 5vmax;
+  padding-left: 15vmax;
   padding-bottom: 0%;
 }
 
 .orderDetailsContainer > p {
+  
   font: 400 1.8vmax "Roboto";
 }
 
@@ -25,6 +27,7 @@
 .orderDetailsContainerBox > div {
   display: flex;
   margin: 1vmax 0;
+  text-transform: capitalize;
 }
 
 .orderDetailsContainerBox > div > p {
@@ -70,6 +73,12 @@
 }
 
 @media screen and (max-width: 600px) {
+
+  .orderDetailsContainer {
+  padding: 5vmax;
+  padding-left: 5vmax;
+  padding-bottom: 0%;
+}
   .orderDetailsContainer > p {
     font: 400 6vw "Roboto";
   }

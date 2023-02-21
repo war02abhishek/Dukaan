@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import "./Slider.css";
+import "./Slider.css";
 import BtnSlider from "./BtnSlider";
 import dataSlider from "./dataSlider";
 import Banner1 from "./Banner/Banner1";
@@ -42,14 +42,14 @@ export default function Slider() {
   }, []);
 
   return (
-    <div className="container-slider">
+    <div className="Ccontainer-slider">
       <div
         key={dataSlider[0].id}
         className={
-          slideIndex === dataSlider[0].id + 1 ? "slide active-anim" : "slide"
+          slideIndex === dataSlider[0].id + 1 ? "Sslide active-anim" : "Sslide"
         }
       >
-        <div className="container">
+        <div className="Ccontainer">
           <img src={dataSlider[0].url} alt="alt" />
           <Banner1 />
         </div>
@@ -57,56 +57,56 @@ export default function Slider() {
       <div
         key={dataSlider[1].id}
         className={
-          slideIndex === dataSlider[1].id + 1 ? "slide active-anim" : "slide"
+          slideIndex === dataSlider[1].id + 1 ? "Sslide active-anim" : "Sslide"
         }
       >
-        <div className="container">
+        <div className="Ccontainer">
           <img src={dataSlider[1].url} alt="alt" />
 
-          <Banner1 />
+          {/* <Banner1 /> */}
         </div>
       </div>
       <div
         key={dataSlider[2].id}
         className={
-          slideIndex === dataSlider[2].id + 1 ? "slide active-anim" : "slide"
+          slideIndex === dataSlider[2].id + 1 ? "Sslide active-anim" : "Sslide"
         }
       >
-        <div className="container">
+        <div className="Ccontainer">
           <img src={dataSlider[2].url} alt="alt" />
 
-          <Banner3 />
+          {/* <Banner3 /> */}
         </div>
       </div>
       <div
         key={dataSlider[3].id}
         className={
-          slideIndex === dataSlider[3].id + 1 ? "slide active-anim" : "slide"
+          slideIndex === dataSlider[3].id + 1 ? "Sslide active-anim" : "Sslide"
         }
       >
-        <div className="container">
+        <div className="Ccontainer">
           <img src={dataSlider[3].url} alt="alt" />
 
-          <Banner4 />
+          {/* <Banner4 /> */}
         </div>
       </div>
       <div
         key={dataSlider[4].id}
         className={
-          slideIndex === dataSlider[4].id + 1 ? "slide active-anim" : "slide"
+          slideIndex === dataSlider[4].id + 1 ? "Sslide active-anim" : "Sslide"
         }
       >
-        <div className="container">
+        <div className="Ccontainer">
           <img src={dataSlider[4].url} alt="alt" />
 
-          <Banner1 />
+          {/* <Banner1 /> */}
         </div>
       </div>
 
-      <BtnSlider moveSlide={nextSlide} direction={"next"} />
-      <BtnSlider moveSlide={prevSlide} direction={"prev"} />
+      {/* <BtnSlider moveSlide={nextSlide} direction={"next"} />
+      <BtnSlider moveSlide={prevSlide} direction={"prev"} /> */}
 
-      <div className="container-dots">
+      <div className="Ccontainer-dots">
         {Array.from({ length: 5 }).map((item, index) => (
           <div
             onClick={() => moveDot(index + 1)}

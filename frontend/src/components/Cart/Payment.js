@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef } from "react";
+import React, { Fragment,useState,useEffect, useRef } from "react";
 import "./Payment.css";
 import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
@@ -31,6 +31,7 @@ const Payment = () => {
   const stripe = useStripe();
   const elements = useElements();
   const payBtn = useRef(null);
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
 
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
 
@@ -55,12 +56,17 @@ const Payment = () => {
   }, [dispatch, error, alert]);
 
   const paymentData = {
-    amount: Math.round(orderInfo.totalPrice * 100),
+    amount: Math.round(orderInfo.totalPrice * 100),//price lowest currency paisa mai convert karde
   };
 
   const submitHandler = async (e) => {
     console.log(payBtn.current.disabled);
-    payBtn.current.setAttribute("disabled", true); //will disable button as soon as we submit it
+    payBtn.current.disabled=true;
+    console.log(payBtn.current.disabled);
+                        
+
+
+    // payBtn.current.setAttribute("disabled", true); //will disable button as soon as we submit it
 
     e.preventDefault();
 
@@ -117,7 +123,7 @@ const Payment = () => {
 
           alert.success("Payment Succesfull");
         } else {
-          alert.error("There's some issue while processing payment ");
+          alert.error(`There's some issue while processing payment`);
         }
       }
     } catch (error) {
@@ -147,6 +153,7 @@ const Payment = () => {
 
           <input
             type="submit"
+            disabled={isButtonDisabled}
             value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
             ref={payBtn}
             className="paymentFormBtn"

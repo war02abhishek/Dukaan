@@ -57,6 +57,7 @@ import {
   register,
   clearErrors,
   googlelogin,
+  forgotPassword,
 } from "../../actions/userAction";
 import FileBase from "react-file-base64";
 
@@ -139,6 +140,9 @@ const LoginSignup = () => {
   const switchMode = () => {
     setIsSignup(!isSignup);
   };
+  const forgotPassword=()=>{
+    navigate("/forgot/password");
+  }
  const googleSuccess = async (response) => {
    // var result = res.getBasicProfile(); // if we used res.profileObj we will get error if there is nothing in res (Optional chaaining operator)
    // const token = res?.tokenId;
@@ -326,6 +330,9 @@ const LoginSignup = () => {
                 {isSignup
                   ? "Already have account? Sign In"
                   : "Don't have account ?Sign Up"}
+              </Button>
+              <Button onClick={forgotPassword}>
+                Forgot Password
               </Button>
             </Grid>
           </Grid>

@@ -12,9 +12,9 @@ import errorMiddleware from "./middleware/error.js"
 // app.use(cors());
 app.use(express.json());
 app.use(cookieParser());//()bohot jaruri hai mt bhulna
-//app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 // app.use(fileUpload());
-
+// app.use(bodyParser.json());
 //Config
 // dotenv.config({ path: "backend/config/config.env" });
 // if (process.env.NODE_ENV !== "PRODUCTION") {

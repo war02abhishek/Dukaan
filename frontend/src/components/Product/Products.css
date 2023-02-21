@@ -12,7 +12,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0 5vmax;
-  margin-left: 2rem;
+  margin-left: 6rem;
   justify-content: center;
   min-height: 150vh
 }
@@ -27,6 +27,10 @@
   display: flex;
   justify-content: center;
   padding: 0;
+}
+.pagination a{
+  font-size: 0.9rem;
+  font-family: Roboto;
 }
 
 .page-item {
@@ -124,7 +128,11 @@
   }
   .products {
   padding: 0 0vmax;
-  min-height: 15vh
+  min-height: 15vh;
+  margin-left: 0.5rem;
 }
 
+}
+.category-link span{
+  padding: 0.2px;
 }

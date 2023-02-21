@@ -9,6 +9,9 @@
   user-select: none;
   
 }
+body{
+  overflow-x: hidden;
+}
 
 /* chrome, safari, edge, opera */
 input::-webkit-outer-spin-button,

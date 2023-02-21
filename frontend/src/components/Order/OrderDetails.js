@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 
 const OrderDetails = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
+  const {user}=useSelector((state)=>state.userReducer);
 
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -40,7 +41,7 @@ const OrderDetails = () => {
               <div className="orderDetailsContainerBox">
                 <div>
                   <p>Name:</p>
-                  <span>{order.user && order.user.name}</span>
+                  <span>{user && user.firstName}</span>
                 </div>
                 <div>
                   <p>Phone:</p>

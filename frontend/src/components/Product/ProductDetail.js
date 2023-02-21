@@ -15,6 +15,7 @@ import { useAlert } from "react-alert";
 import MetaData from "../Layout/MetaData";
 import { addItemsToCart } from "../../actions/cartAction";
 import { useNavigate } from "react-router-dom";
+import ReactImageMagnify from "react-image-magnify";
 
 import {
   Dialog,
@@ -37,7 +38,7 @@ const ProductDetail = () => {
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
- 
+
   const { success, error: reviewError } = useSelector(
     (state) => state.newReviewReducer
   );
@@ -59,18 +60,17 @@ const ProductDetail = () => {
   };
   const form = {
     rating: "",
-    productId: "",
     comment: "",
+    productId: "",
   };
 
   console.log(product.reviews);
 
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
-  const [formm,setFormm]=useState(form);
-  const [ratings, setRatings] = useState(0);
-  const [comments, setComments] = useState("");
-  const [prdid,setPrdid]=useState(id);
+  const [formm, setFormm] = useState(form);
+  const [showZoom, setShowZoom] = useState(true);
+  const [idx, setIdx] = useState(1);
 
   const increaseQuantity = () => {
     if (product.Stock <= quantity) {
@@ -89,25 +89,46 @@ const ProductDetail = () => {
   };
 
   const addToCartHandler = () => {
-    dispatch(addItemsToCart(id, quantity,navigate));
+    dispatch(addItemsToCart(id, quantity, navigate));
     alert.success("Item added to cart");
   };
 
   const submitReviewToggle = () => {
     open ? setOpen(false) : setOpen(true);
   };
+  const handleChange = (e) => {
+    setFormm({
+      ...formm,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const [showMagnify, setShowMagnify] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleMouseEnter = (index) => {
+    setShowMagnify(true);
+    setActiveIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setShowMagnify(false);
+  };
 
   const reviewSubmitHandler = () => {
-    console.log('form');
+    console.log("form");
+    console.log(formm);
+
     // console.log(userl);
     // console.log(userl._id);
 
-    setFormm({
-      ...formm,
-      ["rating"]: ratings,
-      ["comment"]: comments,
-      ["productId"]: prdid,
-    });
+    // setFormm({
+    //   ...formm,
+    //   ["rating"]: ratings,
+    //   ["comment"]: comments,
+    //   ["productId"]: prdid,
+    // });
+    formm.productId = id;
     dispatch(newReview(formm));
 
     setOpen(false);
@@ -139,7 +160,7 @@ const ProductDetail = () => {
         <Fragment>
           <MetaData title={`${product.name}--SHOPSTUDIO`} />
           <div className="ProductDetails">
-            <div>
+            <div className="div1">
               <Carousel
                 width={"20vmax"}
                 autoFocus={true}
@@ -148,20 +169,44 @@ const ProductDetail = () => {
                 transitionTime={500}
                 showThumbs={false}
                 className="carousel"
+                interval={4900}
               >
                 {product.image &&
                   product.image.map((item, i) => (
-                    <img
-                      className="CarouselImage"
-                      key={item.id}
-                      src={item.url}
-                      alt={`${i} Slide`}
-                    />
+                    <div key={item.id} onMouseEnter={() => handleMouseEnter(i)}>
+                      <img
+                        className="CarouselImage"
+                        src={item.url}
+                        alt={`${i} Slide`}
+                      />
+                    </div>
                   ))}
               </Carousel>
             </div>
+            {showMagnify && (
+              <div className="magnify-container">
+                <div className="mag" onMouseLeave={handleMouseLeave}>
+                  <ReactImageMagnify
+                    {...{
+                      smallImage: {
+                        alt: "Product image",
+                        isFluidWidth: false,
+                        src: product.image[activeIndex].url,
+                        width: 300,
+                        height: 300,
+                      },
+                      largeImage: {
+                        src: product.image[activeIndex].url,
+                        width: 1200,
+                        height: 1800,
+                      },
+                    }}
+                  />
+                </div>
+              </div>
+            )}
 
-            <div>
+            <div className="div2">
               <div className="detailsBlock-1">
                 <h2>{product.name}</h2>
                 <p>Product # {product._id}</p>
@@ -190,8 +235,8 @@ const ProductDetail = () => {
 
                 <p>
                   Status:&nbsp;
-                  <b className={product.stock < 1 ? "redColor" : "greenColor"}>
-                    {product.stock < 1 ? "OutOfStock" : "InStock"}
+                  <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
+                    {product.Stock < 1 ? "OutOfStock" : "InStock"}
                   </b>
                 </p>
               </div>
@@ -214,17 +259,19 @@ const ProductDetail = () => {
             <DialogTitle>Submit Review</DialogTitle>
             <DialogContent className="submitDialog">
               <Rating
-                onChange={(e) => setRatings(e.target.value)}
-                value={ratings}
+                value={formm.rating}
+                name="rating"
                 size="large"
+                onChange={handleChange}
               />
 
               <textarea
                 className="submitDialogTextArea"
                 cols="30"
                 rows="5"
-                value={comments}
-                onChange={(e) => setComments(e.target.value)}
+                value={formm.comment}
+                name="comment"
+                onChange={handleChange}
               ></textarea>
             </DialogContent>
             <DialogActions>

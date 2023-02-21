@@ -22,6 +22,9 @@ import {
   FORGOT_PASSWORD_FAIL,
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAIL,
   ALL_USERS_REQUEST,
   ALL_USERS_SUCCESS,
   ALL_USERS_FAIL,
@@ -144,6 +147,7 @@ export const profileReducer = (state = {}, action) => {
     case UPDATE_PASSWORD_SUCCESS:
     case UPDATE_USER_SUCCESS:
       //  localStorage.setItem("user", JSON.stringify({ ...action?.payload }));
+      console.log(action.payload);
       return {
         ...state,
         loading: false,
@@ -239,6 +243,48 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       };
 
     case USER_DETAILS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const forgotPasswordReducer = (state = {}, action) => {
+  switch (action.type) {
+    case FORGOT_PASSWORD_REQUEST:
+    case RESET_PASSWORD_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case FORGOT_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        message: action.payload,
+      };
+
+    case RESET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: action.payload,
+      };
+
+    case FORGOT_PASSWORD_FAIL:
+    case RESET_PASSWORD_FAIL:
       return {
         ...state,
         loading: false,

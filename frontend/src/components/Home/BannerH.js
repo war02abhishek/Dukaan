@@ -7,6 +7,8 @@ const BannerH = ({children,title,subtitle}) => {
       <h1>{title}</h1>
       <div></div>
       <p>{subtitle}</p>
+      <div></div>
+
       {children}
     </div>
   );

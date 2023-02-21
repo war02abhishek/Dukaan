@@ -61,9 +61,55 @@
 }
 
 .paymentFormBtn:hover {
-  background-color: rgb(216, 228, 0);
-  border-radius: 10%;
+    background-color: #e5a400;
+
+  border-radius: 1%;
 }
+.OpenCheckoutBtn{
+  padding: 2rem;
+  margin: auto;
+  background-color: #f3b925;
+  border: none;
+
+  border-radius: 3rem;
+  font-size: 2.1rem;
+  
+  text-transform: uppercase;
+  font-family:"Belleza", sans-serif;
+}
+.Payment2Contianer{
+  display:flex;
+  flex-direction: column;
+ 
+}
+
+.Payment2btnContainer{
+  display: flex;
+  flex-direction: row;
+  display:flex;
+  margin: auto;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+
+}
+.Payment2btnContainer :hover{
+ cursor: pointer;
+  background-color: #39b54a;
+  transition: 0.3s linear;
+}
+.PayGateway{
+  display: flex;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  margin-top: 5rem;
+  font-family: "Belleza", sans-serif;
+
+
+}
+
 
 @media screen and (max-width: 600px) {
   .paymentForm {
@@ -90,6 +136,20 @@
 
   .paymentFormBtn {
     font: 300 4vw "Roboto";
-    padding: 4vw;
+   
   }
+  .Payment2btnContainer{
+  display:flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+
+}
+.OpenCheckoutBtn{
+  margin-top: 5rem;
+  font-size: 1.1rem;
+  padding: 1rem;
+
+}
 }

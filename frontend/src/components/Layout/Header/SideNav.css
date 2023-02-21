@@ -52,10 +52,10 @@
   box-shadow: var(--clr-red-dark);
   transition: var(--transition);
   transform: translate(-100%);
+  overflow-x: hidden;
 }
-.show-sidebar{
-transform: translate(0);
-
+.show-sidebar {
+  transform: translate(0);
 }
 ul {
   list-style-type: none;
@@ -100,11 +100,8 @@ a {
   cursor: pointer;
   animation: bounce 2s ease-in-out infinite;
   z-index: 1;
-   /* transform: translate(100%); */
+  /* transform: translate(100%); */
 }
-
-
-
 
 .sidebar {
   height: 100%;
@@ -115,7 +112,7 @@ a {
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   /* background: transparent; */
-  
+
   overflow-x: hidden;
   transition: 0.5s;
   /* padding-top: 60px; */
@@ -135,21 +132,22 @@ a {
   color: #ffffff;
   display: block;
   transition: 0.3s;
+  /* font-family: "Roboto"; */
 }
 
 .sidebar a:hover {
   color: #797777;
 }
-.logo{
-    height: 4.5rem;
-    width: 6.5rem;
-    border-radius: 20%;
-    background-color: #f1f1f1;
+.logo {
+  height: 4.5rem;
+  width: 6.5rem;
+  border-radius: 20%;
+  background-color: #f1f1f1;
 }
 
-.links{
-    padding-left: 1.5vmax;
-    grid-column: auto;
+.links {
+  padding-left: 1.5vmax;
+  grid-column: auto;
 }
 /* .cart{
     padding-top: 2vmax;
@@ -158,40 +156,34 @@ a {
     padding-top: 2vmax;
 } */
 
-
-
 @media screen and (min-width: 500px) {
   .sidebar {
     width: 200px;
+    overflow: hidden;
   }
 }
-@media screen and (max-width:499px) {
-
-  .sidebar{
-    
+@media screen and (max-width: 499px) {
+  .sidebar {
     /* flex-direction: column-reverse; */
     width: 100%;
     height: 50%;
+    overflow-x: hidden;
   }
   .sidebar a {
     font-size: 18px;
     padding: 8px 1px 1px 32px;
-    
   }
 
-.close-btn{
-  font-size: 1.5rem;
-}
-
-
-  
+  .close-btn {
+    font-size: 1.5rem;
+  }
 }
 
 @media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;
-  
-}
-  
+  .sidebar {
+    padding-top: 15px;
+    overflow: hidden;
+  }
 }
 /* CSS for user Options */
 .speedDial {
@@ -206,9 +198,10 @@ a {
   border-radius: 100%;
 }
 .MuiFab-primary {
-    color: #fff;
-    background-color: #242630;
+  color: #fff;
+  /* background-color: #242630; */
+  background-color: #f3b925;
 }
-.MuiFab-label{
+.MuiFab-label {
   color: var(--clr-primary-5);
 }

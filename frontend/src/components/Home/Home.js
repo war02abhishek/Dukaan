@@ -48,7 +48,7 @@ const Home = () => {
           <MetaData title={"E-Commerce"} />
           <div className="banner">
             <BannerH
-              title="Welcome to Dukaan Studio"
+              title="Welcome to DUKAAN Studio"
               subtitle="Variety of amazing products below"
             >
               <a href="#container">
@@ -61,6 +61,7 @@ const Home = () => {
           </div>
 
           {/* < title="SHOPSTUDIO" /> */}
+          <Slider/>
 
           <h2 className="homeHeading">Feautred Products</h2>
           <div className="container" id="container">

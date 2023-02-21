@@ -185,9 +185,20 @@
     font: 300 2vmax "Roboto";
   }
 
+  .checkOutBtn{
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+  }
   .checkOutBtn > button {
-    padding: 2vmax 4vmax;
-    width: 100%;
-    font: 300 2vmax "Roboto";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1vmax 2vmax;
+    width: 50%;
+    font: 300 1.5vmax "Roboto";
   }
 }

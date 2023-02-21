@@ -12,7 +12,9 @@ import {
   deleteUser,
   updateUserRole,
   getSingleUser,
+  resetPassword,
 } from "../controllers/UserController.js";
+
 import { isAuthenticatedUser, AuthenticatedRole } from "../middleware/auth.js";
 const router = express.Router();
 
@@ -21,6 +23,8 @@ router.post("/googlelogin", googleloginUser);
 
 router.post("/login", loginUser);
 router.post("/password/forgot",forgotPassword);
+router.put("/password/reset/:oobCode",resetPassword);
+
 router.get("/logout", logoutUser);
 router.get("/me",isAuthenticatedUser, getUserDetails);
 router.put("/me/update", isAuthenticatedUser, updateProfile);

@@ -4,7 +4,13 @@
 
     /* https://madelastonlineshopping.files.wordpress.com/2015/02/woman-online-shopping.jpg
      */
-     background-image: linear-gradient(rgba(0, 0, 0, 0.027),rgba(0, 0, 0, 0.5)) , url("https://wallpaperaccess.com/full/2593042.jpg");
+     /* background-image: linear-gradient(rgba(0, 0, 0, 0.027),rgba(0, 0, 0, 0.5)) , url("https://wallpaperaccess.com/full/2593042.jpg"); */
+     /* background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url("https://img.freepik.com/premium-vector/hand-drawn-illustration-people-shopping-sale_52683-55420.jpg?w=2000"); */
+     /* background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url("https://dos.ny.gov/sites/g/files/oee926/files/media/2021/11/shopping.jpg"); */
+     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url("https://png.pngtree.com/thumb_back/fh260/back_our/20190614/ourmid/pngtree-happy-shopping-light-spot-poster-background-image_122448.jpg");
+
+
+
 
    /* background-image: url("https://madelastonlineshopping.files.wordpress.com/2015/02/woman-online-shopping.jpg");  */
   background-size: cover;

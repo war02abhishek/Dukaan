@@ -85,7 +85,7 @@ userSchema.methods.comparePassword = async function(enteredPassword){
 
 // Generating password reset token
 userSchema.methods.getResetPasswordToken = function () {
-  // Generate token
+  // Generate reset token
   const resetToken = crypto.randomBytes(20).toString("hex");
 
   // Hashing and adding to user schema
@@ -96,13 +96,12 @@ userSchema.methods.getResetPasswordToken = function () {
 
   // Expire in 15 minutes
   
-  // console.log(this.resetPasswordToken);
+  console.log(this.resetPasswordToken);
   this.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
-  // console.log(this.resetPasswordExpire);
+  console.log(this.resetPasswordExpire);
 
   return resetToken;
 };
-
 
 
 var ProdD = mongoose.model("User", userSchema);

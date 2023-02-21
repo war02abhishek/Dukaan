@@ -46,7 +46,7 @@ const ConfirmOrder = () => {
             <div className="confirmshippingAreaBox">
               <div>
                 <p>Name:</p>
-                <span>{user?.firstName} {user?.lastName}</span>
+                <span>{user?.firstName}</span>
               </div>
               <div>
                 <p>Phone:</p>
